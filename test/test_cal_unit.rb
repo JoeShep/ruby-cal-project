@@ -15,7 +15,7 @@ class UnitTestRubyCal < Test::Unit::TestCase
 
   def test_03_banner_format_is_correct
     cal=Calendar.new(2, 2012)
-    assert_equal("     February, 2012", cal.month_year_header)
+    assert_equal("   February 2012", cal.month_year_header)
   end
 
   def test_04_years_divisisble_by_400_are_leap_years
@@ -48,14 +48,19 @@ class UnitTestRubyCal < Test::Unit::TestCase
     assert_equal(30, cal.month_days)
   end
 
-  def test_10_passing_in_day_month_year_returns_day_of_week
-    cal=Calendar.new(9, 1967)
-    assert_equal("Friday", cal.date_day(22, "September", 1967))
-  end
+  # def test_10_passing_in_day_month_year_returns_weekday_of_first_day
+  #   cal=Calendar.new(9, 1967)
+  #   assert_equal("Friday", cal.date_day(1, "September", 1967))
+  # end
+
+  # def test_10_passing_in_month_year_returns_weekday_of_first_day
+  #   cal=Calendar.new(2, 2012)
+  #   assert_equal("We", cal.first_week)
+  # end
 
   def test_11_month_greater_than_12_returns_error
     cal=Calendar.new(13, 1967)
-    assert_equal("my_cal: 13 is neither a month number (1..12) nor a name", cal.month_number)
+    assert_equal("my_cal: 13 is neither a month number (1..12) nor a name", cal.month_number_error)
   end
 
   def test_12_month_passed_as_string_prints_capitalized
@@ -63,12 +68,20 @@ class UnitTestRubyCal < Test::Unit::TestCase
     assert_equal("February", cal.month_format)
   end
 
+  # def test_13_day_header_prints_correctly
+  #   cal=Calendar.new("february", 2012)
+  #   assert_equal("Su Mo Tu We Th Fr Sa", cal.day_header)
+  # end
 
+  def test_14_first_week_format_is_correct
+    cal=Calendar.new(2, 2012)
+    assert_equal("          1  2  3  4", cal.first_week)
+  end
 
-
-
-
-
+  def test_15_print_calendar_method_returns_formatted_calendar
+    cal=Calendar.new(2, 2012)
+    assert_equal("   February 2012\nSu Mo Tu We Th Fr Sa\n          1  2  3  4\n", cal.print_calendar)
+  end
 
 
 end
