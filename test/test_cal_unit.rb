@@ -50,7 +50,7 @@ class UnitTestRubyCal < Test::Unit::TestCase
 
   # def test_10_passing_in_day_month_year_returns_weekday_of_first_day
   #   cal=Calendar.new(9, 1967)
-  #   assert_equal("Friday", cal.date_day(1, "September", 1967))
+  #   assert_equal("Saturday", cal.date_day(1, "January", 2000))
   # end
 
   # def test_10_passing_in_month_year_returns_weekday_of_first_day
@@ -68,17 +68,17 @@ class UnitTestRubyCal < Test::Unit::TestCase
     assert_equal("February", cal.month_format)
   end
 
-  # def test_13_day_header_prints_correctly
-  #   cal=Calendar.new("february", 2012)
-  #   assert_equal("Su Mo Tu We Th Fr Sa", cal.day_header)
-  # end
-
   def test_14_first_week_format_is_correct
     cal=Calendar.new(2, 2012)
     assert_equal("          1  2  3  4", cal.first_week)
   end
 
-  def test_15_print_calendar_method_returns_formatted_calendar
+  def test_15_second_third_fourth_weeks_format_correctly
+    cal=Calendar.new(2, 2012)
+    assert_equal()
+  end
+
+  def test_X_print_calendar_method_returns_formatted_calendar
     cal=Calendar.new(2, 2012)
     assert_equal("   February 2012\nSu Mo Tu We Th Fr Sa\n          1  2  3  4\n", cal.print_calendar)
   end
