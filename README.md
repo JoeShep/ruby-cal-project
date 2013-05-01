@@ -14,14 +14,14 @@ a calendar of that month in the format of the original cal program:
         get_first_of_month(month, year)
         format_month(month,year)
         
- Helper methods I have created as of April 30, 2013:
-        leap_year? -Boolean check for leap year status.
-        month_number  -Throws error if month arg is > 12.
-        month_format  -Capitalizes month if month arg is passed as string instead of a number.
-        month_name -Converts month arg to capitalized string if passed as a number.
-        feb_days -Sets February to 28 or 39 days depending on leap year status.
-        month_days -Assigns 30 or 31 days to months that aren't February.
-        date_day(day, month, year)  -Matches dates with the proper day of the week.
+ Helper methods I have created as of April 30, 2013:<br>
+        leap_year? -Boolean check for leap year status.<br>
+        month_number  -Throws error if month arg is > 12.<br>
+        month_format  -Capitalizes month if month arg is passed as string instead of a number.<br>
+        month_name -Converts month arg to capitalized string if passed as a number.<br>
+        feb_days -Sets February to 28 or 39 days depending on leap year status.<br>
+        month_days -Assigns 30 or 31 days to months that aren't February.<br>
+        date_day(day, month, year)  -Matches dates with the proper day of the week.<br>
         
         
 
