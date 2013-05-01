@@ -7,6 +7,18 @@ class Calendar
     @year = year
   end
 
+ def month_number
+    if month > 12
+    "my_cal: #{month} is neither a month number (1..12) nor a name"
+  end
+ end
+
+  def month_format
+    if month.class == String
+      month.capitalize
+    end
+  end
+
   def month_name
     month_names = %w[January February March April May June
       July August September October November December]

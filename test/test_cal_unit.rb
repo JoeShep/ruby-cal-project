@@ -33,25 +33,36 @@ class UnitTestRubyCal < Test::Unit::TestCase
     assert_equal(true, cal.leap_year?)
   end
 
-  def test_06_feb_has_29_days_in_leap_years
+  def test_07_feb_has_29_days_in_leap_years
     cal=Calendar.new(2, 2012)
     assert_equal(29, cal.feb_days)
   end
 
-  def test_07_month_days_method_returns_31_days
+  def test_08_month_days_method_returns_31_days
     cal=Calendar.new(3, 2012)
     assert_equal(31, cal.month_days)
   end
 
-  def test_08_month_days_method_returns_30_days
+  def test_09_month_days_method_returns_30_days
     cal=Calendar.new(9, 2012)
     assert_equal(30, cal.month_days)
   end
 
-  def test_08_passing_in_day_month_year_returns_day_of_week
+  def test_10_passing_in_day_month_year_returns_day_of_week
     cal=Calendar.new(9, 1967)
     assert_equal("Friday", cal.date_day(22, "September", 1967))
   end
+
+  def test_11_month_greater_than_12_returns_error
+    cal=Calendar.new(13, 1967)
+    assert_equal("my_cal: 13 is neither a month number (1..12) nor a name", cal.month_number)
+  end
+
+  def test_12_month_passed_as_string_prints_capitalized
+    cal=Calendar.new("february", 2012)
+    assert_equal("February", cal.month_format)
+  end
+
 
 
 
