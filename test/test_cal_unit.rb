@@ -73,10 +73,10 @@ class UnitTestRubyCal < Test::Unit::TestCase
     assert_equal("          1  2  3  4", cal.first_week)
   end
 
-  def test_15_second_third_fourth_weeks_format_correctly
-    cal=Calendar.new(2, 2012)
-    assert_equal()
-  end
+  # def test_15_second_third_fourth_weeks_format_correctly
+  #   cal=Calendar.new(2, 2012)
+  #   assert_equal()
+  # end
 
   def test_X_print_calendar_method_returns_formatted_calendar
     cal=Calendar.new(2, 2012)
