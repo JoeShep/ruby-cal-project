@@ -5,6 +5,19 @@ Implementation of the Linux "cal" program in Ruby. Assignment for Nashville Soft
 This is an exercise in test-driven development (TDD). When completed, this program will
 contain integration tests and unit tests that confirm the functionality of the methods.
 
+May 3 update:
+Calendar program now runs! Need to figure out how to fix spacing issue when a week contains both single and double digit 
+dates. Also need to refine tests so they all pass with current code.
+
+May 1 update:
+Current files reflect transition from small, isolated methods to larger, integrated methods. Still writing
+and updating unit tests to reflect the changing methods. 
+
+Can now run ruby_cal2.rb from the command line, passing a month (As a number. Passing as a string 
+will come later) and a year as arguments. Prints the month and year header, the days of the week header, 
+and the first week of the month.
+
+April 30 update:
 When a month and year are passed as arguments, my_cal will use the following methods to print 
 a calendar of that month in the format of the original cal program:
 
@@ -22,6 +35,8 @@ a calendar of that month in the format of the original cal program:
         feb_days -Sets February to 28 or 39 days depending on leap year status.<br>
         month_days -Assigns 30 or 31 days to months that aren't February.<br>
         date_day(day, month, year)  -Matches dates with the proper day of the week.<br>
+ 
+ 
         
         
 
