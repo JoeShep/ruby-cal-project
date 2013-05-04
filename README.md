@@ -5,6 +5,10 @@ Implementation of the Linux "cal" program in Ruby. Assignment for Nashville Soft
 This is an exercise in test-driven development (TDD). When completed, this program will
 contain integration tests and unit tests that confirm the functionality of the methods.
 
+May 3 update:
+Calendar program now runs! Need to figure out how to fix spacing issue when a week contains both single and double digit 
+dates. Also need to refine tests so they all pass with current code.
+
 May 1 update:
 Current files reflect transition from small, isolated methods to larger, integrated methods. Still writing
 and updating unit tests to reflect the changing methods. 
