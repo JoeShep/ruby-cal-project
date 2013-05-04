@@ -1,5 +1,5 @@
 class Calendar
-
+  MaxDays = *(1..31) #splat to create array
   attr_reader :month, :year
 
   def initialize (month, year)
@@ -7,11 +7,11 @@ class Calendar
     @year = year
   end
 
- def month_number_error
+  def month_number_error
     if month > 12
-    "my_cal: #{month} is neither a month number (1..12) nor a name"
+      "my_cal: #{month} is neither a month number (1..12) nor a name"
+    end
   end
- end
 
   def month_format
     if month.class == String
@@ -22,45 +22,35 @@ class Calendar
   def month_name
     month_names = %w[January February March April May June
       July August September October November December]
-    month_names[month.to_i-1]
-  end
+      month_names[month.to_i-1]
+    end
 
   def month_year_header
     banner= "#{month_name} #{year}".center(20).rstrip
     banner
   end
 
-  # def day_header
-  #   days= "Su Mo Tu We Th Fr Sa"
-  #   days
-  # end
+  def month_days #without February
+    case month when 4, 6, 9, 11
+     30
+   else
+     31
+   end
+  end
 
   def leap_year?
     if year % 400 == 0
       true
-      elsif year % 100 == 0
-        false
-      elsif year % 4 == 0
-          true
-      else
-        false
-    end
-  end
-
-  def feb_days
-    feb_days=28 unless leap_year?
-      feb_days = 29
-  end
-
-  def month_days #without February
-    case month when 4, 6, 9, 11
-     30
+    elsif year % 100 == 0
+      false
+    elsif year % 4 == 0
+      true
     else
-     31
+      false
     end
   end
 
-  def first_week # adapted from http://steamcode.blogspot.com/2010_10_01_archive.html
+  def format_weeks # adapted from http://steamcode.blogspot.com/2010_10_01_archive.html
     months = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2] #March-February, ordered per Zeller's congruence
     dayNames = %w[Su Mo Tu We Th Fr Sa]
     m = months.index(month.to_i) + 1
@@ -68,66 +58,52 @@ class Calendar
     d = y % 100
     c = y / 100
     f = (1 + (((13*m) - 1) / 5).floor + d + (d/4).floor + (c/4).floor - (2*c)) % 7
-    first_day = dayNames[f]
-    wk1_to_4 = [1..28]
-    case first_day
-      when "Su"
-        <<-EOS
- 1  2  3  4  5  6 7
- 8  9 10 11 12 13 14
-15 16 17 18 19 20 21
-22 23 24 25 26 27 28
-EOS
-        # " " + wk1_to_4.join('  ')
-      when "Mo"
-        <<-EOS
-    1  2  3  4  5  6
- 7  8  9 10 11 12 13
-14 15 16 17 18 19 20
-21 22 23 24 25 26 27
-EOS
-      when "Tu"
-        <<-EOS
-       1  2  3  4  5
- 6  7  8  9 10 11 12
-13 14 15 16 17 18 19
-20 21 22 23 24 25 26
-EOS
-      when "We"
-        <<-EOS
-          1  2  3  4
- 5  6  7  8  9 10 11
-12 13 14 15 16 17 18
-19 20 21 22 23 24 25
-EOS
-      when "Th"
-        <<-EOS
-             1  2  3
- 4  5  6  7  8  9 10
-11 12 13 14 15 16 17
-18 19 20 21 22 23 24
-EOS
-      when "Fr"
-        <<-EOS
-                1  2
- 3  4  5  6  7  8  9
-10 11 12 13 14 15 16
-17 18 19 20 21 22 23
-EOS
-      when "Sa"
-        <<-EOS
-                   1
- 2  3  4  5  6  7  8
- 9 10 11 12 13 14 15
-16 17 18 19 20 21 22
-EOS
-    end
-  end
-  # (1..31).each {|n| print n, ' ' }
+    first_day_spot = dayNames.index(dayNames[f])
 
-  def print_calendar
-  days= "Su Mo Tu We Th Fr Sa"
-  puts= "#{month_year_header}" + "\n" + "#{days}" + "\n" + "#{first_week}" + "\n"
+    wk1=MaxDays.shift(7 - first_day_spot)
+    second_week=MaxDays.shift(7)
+    third_week=MaxDays.shift(7)
+    fourth_week=MaxDays.shift(7)
+
+    if self.leap_year? && month == 2
+      fifth_week=MaxDays.reject {|number| number >29}
+    elsif month == 2
+      fifth_week=MaxDays.reject {|number| number >28}
+    elsif month_days == 30
+      fifth_week=MaxDays.reject {|number| number >30}
+    else
+      fifth_week=MaxDays.reject {|number| number >31}
+    end
+      sixth_week=[]
+      if fifth_week.size > 7
+        fifth_week=MaxDays.shift(7)
+        sixth_week=MaxDays
+      end
+
+    all_weeks = " "
+    first_day_spot.times do
+      all_weeks << "   "
+    end
+
+    all_weeks << wk1.join('  ')
+    all_weeks << "\n" + " "
+    all_weeks << second_week.join('  ')
+    all_weeks << "\n"
+    all_weeks << third_week.join(' ')
+    all_weeks << "\n"
+    all_weeks << fourth_week.join(' ')
+    all_weeks << "\n"
+    all_weeks << fifth_week.join(' ')
+    all_weeks << "\n"
+    all_weeks << sixth_week.join(' ')
+  end
+
+  def format_calendar
+  days= "Su Mo Tu We Th Fr Sa\n"
+  output= month_year_header
+  output << "\n"
+  output << days
+  output << format_weeks
   end
 
 end
