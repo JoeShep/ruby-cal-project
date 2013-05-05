@@ -62,6 +62,8 @@ class Calendar
 
     wk1=MaxDays.shift(7 - first_day_spot)
     second_week=MaxDays.shift(7)
+    second_weekA=second_week.reject {|number| number >9}
+    second_weekB=second_week.reject {|number| number < 10}
     third_week=MaxDays.shift(7)
     fourth_week=MaxDays.shift(7)
 
@@ -87,7 +89,8 @@ class Calendar
 
     all_weeks << wk1.join('  ')
     all_weeks << "\n" + " "
-    all_weeks << second_week.join('  ')
+    all_weeks << second_weekA.join('  ') + " "
+    all_weeks << second_weekB.join(' ')
     all_weeks << "\n"
     all_weeks << third_week.join(' ')
     all_weeks << "\n"
@@ -96,6 +99,7 @@ class Calendar
     all_weeks << fifth_week.join(' ')
     all_weeks << "\n"
     all_weeks << sixth_week.join(' ')
+    all_weeks << "\n"
   end
 
   def format_calendar
@@ -105,5 +109,4 @@ class Calendar
   output << days
   output << format_weeks
   end
-
 end
