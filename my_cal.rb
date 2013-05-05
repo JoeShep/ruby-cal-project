@@ -13,6 +13,12 @@ class Calendar
     end
   end
 
+  def year_error
+    if year < 1800 || year > 3000
+      "my_cal: Year must be between 1800 and 3000. Please try again."
+    end
+  end
+
   def month_format
     if month.class == String
       month.capitalize
@@ -61,45 +67,45 @@ class Calendar
     first_day_spot = dayNames.index(dayNames[f])
 
     wk1=MaxDays.shift(7 - first_day_spot)
-    second_week=MaxDays.shift(7)
-    second_weekA=second_week.reject {|number| number >9}
-    second_weekB=second_week.reject {|number| number < 10}
-    third_week=MaxDays.shift(7)
-    fourth_week=MaxDays.shift(7)
+    # second_week=MaxDays.shift(7)
+    # second_weekA=second_week.reject {|number| number >9}
+    # second_weekB=second_week.reject {|number| number < 10}
+    # third_week=MaxDays.shift(7)
+    # fourth_week=MaxDays.shift(7)
 
-    if self.leap_year? && month == 2
-      fifth_week=MaxDays.reject {|number| number >29}
-    elsif month == 2
-      fifth_week=MaxDays.reject {|number| number >28}
-    elsif month_days == 30
-      fifth_week=MaxDays.reject {|number| number >30}
-    else
-      fifth_week=MaxDays.reject {|number| number >31}
-    end
-      sixth_week=[]
-      if fifth_week.size > 7
-        fifth_week=MaxDays.shift(7)
-        sixth_week=MaxDays
-      end
+    # if self.leap_year? && month == 2
+    #   fifth_week=MaxDays.reject {|number| number >29}
+    # elsif month == 2
+    #   fifth_week=MaxDays.reject {|number| number >28}
+    # elsif month_days == 30
+    #   fifth_week=MaxDays.reject {|number| number >30}
+    # else
+    #   fifth_week=MaxDays.reject {|number| number >31}
+    # end
+    #   sixth_week=[]
+    #   if fifth_week.size > 7
+    #     fifth_week=MaxDays.shift(7)
+    #     sixth_week=MaxDays
+    #   end
 
-    all_weeks = " "
-    first_day_spot.times do
-      all_weeks << "   "
-    end
+    # all_weeks = " "
+    # first_day_spot.times do
+    #   all_weeks << "   "
+    # end
 
-    all_weeks << wk1.join('  ')
-    all_weeks << "\n" + " "
-    all_weeks << second_weekA.join('  ') + " "
-    all_weeks << second_weekB.join(' ')
-    all_weeks << "\n"
-    all_weeks << third_week.join(' ')
-    all_weeks << "\n"
-    all_weeks << fourth_week.join(' ')
-    all_weeks << "\n"
-    all_weeks << fifth_week.join(' ')
-    all_weeks << "\n"
-    all_weeks << sixth_week.join(' ')
-    all_weeks << "\n"
+    # all_weeks << wk1.join('  ')
+    # all_weeks << "\n" + " "
+    # all_weeks << second_weekA.join('  ') + " "
+    # all_weeks << second_weekB.join(' ')
+    # all_weeks << "\n"
+    # all_weeks << third_week.join(' ')
+    # all_weeks << "\n"
+    # all_weeks << fourth_week.join(' ')
+    # all_weeks << "\n"
+    # all_weeks << fifth_week.join(' ')
+    # all_weeks << "\n"
+    # all_weeks << sixth_week.join(' ')
+    # all_weeks << "\n"
   end
 
   def format_calendar
