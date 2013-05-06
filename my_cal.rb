@@ -9,7 +9,7 @@ class Calendar
 
   def month_number_error
     if month > 12
-      "my_cal: #{month} is neither a month number (1..12) nor a name"
+      "my_cal: Entered #{month} is not a month number (1..12)."
     end
   end
 
@@ -92,7 +92,6 @@ class Calendar
     first_day_spot.times do
       all_weeks << "   "
     end
-
     all_weeks << wk1.join('  ')
     all_weeks << "\n" + " "
     all_weeks << second_weekA.join('  ') + " "
@@ -109,10 +108,10 @@ class Calendar
   end
 
   def format_calendar
-  days= "Su Mo Tu We Th Fr Sa\n"
-  output= month_year_header
-  output << "\n"
-  output << days
-  output << format_weeks
+    days= "Su Mo Tu We Th Fr Sa\n"
+    output= month_year_header
+    output << "\n"
+    output << days
+    output << format_weeks
   end
 end

@@ -90,18 +90,13 @@ class UnitTestRubyCal < Test::Unit::TestCase
 
   def test_11_month_greater_than_12_returns_error
     cal=Calendar.new(13, 1967)
-    assert_equal("my_cal: 13 is neither a month number (1..12) nor a name", cal.month_number_error)
+    assert_equal("my_cal: Entered #{month} is not a month number (1..12).", cal.month_number_error)
   end
 
   def test_12_month_passed_as_string_prints_capitalized
     cal=Calendar.new("february", 2012)
     assert_equal("February", cal.month_format)
   end
-
-  # def test_16_wk5plus_format_is_correct_for_leap_year_febs
-  #   cal=Calendar.new(2, 2012)
-  #   assert_equal(29, cal.format_weeks)
-  # end
 
   def test_17_format_calendar_method_returns_formatted_calendar
     cal=Calendar.new(2, 2012)
