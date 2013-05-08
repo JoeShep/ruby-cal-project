@@ -5,6 +5,12 @@ Implementation of the Linux "cal" program in Ruby. Assignment for Nashville Soft
 This is an exercise in test-driven development (TDD). When completed, this program will
 contain integration tests and unit tests that confirm the functionality of the methods.
 
+May 8 update: Post refactoring
+My odd, large, funky code is no more. What a difference a peer code review and help from Nashville 
+Software school mentor Ben Bridges makes! Much smaller code overall, and it uses better practices
+that will make the next phase easier to implement (printing out a whole year). Original code now in 
+the "cal-pre-refactor" folder just for comparison's sake.
+
 May 5 update:
 Spacing issue fixed. Very excited to have this working properly! Ruby is proving to be a fun environment. I enjoyed thinking
 through the logic of a possible solution and finding that Ruby allowed me to write code that followed my logic (even if 
