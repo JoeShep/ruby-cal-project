@@ -14,13 +14,15 @@ class UnitTestRubyCal < Test::Unit::TestCase
   end
 
   def test_2A_error_if_year_argument_is_before_1800
-    cal= Calendar.new(2, 1799)
-    assert_equal("my_cal: Year must be between 1800 and 3000. Please try again.", cal.month_year_errors)
+    assert_raise ArgumentError do
+    Calendar.new(2, 1799)
+    end
   end
 
   def test_2B_error_if_year_argument_is_after_3000
-    cal= Calendar.new(2, 3001)
-    assert_equal("my_cal: Year must be between 1800 and 3000. Please try again.", cal.month_year_errors)
+    assert_raise ArgumentError do
+    Calendar.new(2, 3001)
+    end
   end
 
   def test_03_banner_format_is_correct
@@ -28,15 +30,15 @@ class UnitTestRubyCal < Test::Unit::TestCase
     assert_equal("   February 2012", cal.month_year_header)
   end
 
-#   def test_04_years_divisisble_by_400_are_leap_years
-#     cal=Calendar.new(2, 2012)
-#     assert_equal(true, cal.leap_year?)
-#   end
+  def test_04_years_divisisble_by_400_are_leap_years
+    cal=Calendar.new(2, 2012)
+    assert_equal(true, cal.leap_year?)
+  end
 
-#   def test_05_years_divisible_by_100_but_not_400_are_normal
-#     cal=Calendar.new(2, 1900)
-#     assert_equal(false, cal.leap_year?)
-#   end
+  def test_05_years_divisible_by_100_but_not_400_are_normal
+    cal=Calendar.new(2, 1900)
+    assert_equal(false, cal.leap_year?)
+  end
 
   def test_06_yrs_divisible_by_4_are_leap_years
     cal=Calendar.new(2, 2000)
@@ -73,10 +75,10 @@ class UnitTestRubyCal < Test::Unit::TestCase
     assert_equal(3, cal.first_day_spot)
   end
 
-  # def test_10C_all_weeks_contains_right_days
-  #   cal=Calendar.new(2, 2012)
-  #   assert_equal([[        1,  2,  3,  4], [ 5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29], cal.format_days_array)
-  # end
+  def test_10C_all_weeks_contains_right_days
+    cal=Calendar.new(2, 2012)
+    assert_equal([["  ","  ","  ", "1",  "2",  "3",  "4"], ["5", "6", "7", "8",  "9", "10", "11"], ["12", "13", "14", "15", "16", "17", "18"], ["19", "20", "21", "22", "23", "24", "25"], ["26", "27", "28", "29", " ", " ", " "], [" ", " ", " ", " ", " ", " ", " "]], cal.format_days_array)
+  end
 
 # #   def test_14A_fourth_week_array_is_correct
 # #   cal=Calendar.new(2, 2012)
@@ -99,13 +101,9 @@ class UnitTestRubyCal < Test::Unit::TestCase
 #   # end
 
   def test_11_month_greater_than_12_returns_error
-    cal=Calendar.new(13, 1967)
-    assert_equal("my_cal: Entered #{month} is not a month number (1..12).", cal.month_number_error)
-  end
-
-  def test_12_month_passed_as_string_prints_capitalized
-    cal=Calendar.new("february", 2012)
-    assert_equal("February", cal.month_format)
+    assert_raise ArgumentError do
+    Calendar.new(13, 1967)
+   end
   end
 
 #   def test_17_format_calendar_method_returns_formatted_calendar
