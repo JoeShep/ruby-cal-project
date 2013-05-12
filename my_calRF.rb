@@ -1,5 +1,4 @@
 class Calendar
-  MaxDays = *(1..31) #splat to create array
   MonthNames = %w[January February March April May June
     July August September October November December]
 
@@ -9,17 +8,20 @@ class Calendar
       @month = month.to_i
       @year = year.to_i
 
-      if @month > 12
+      unless (1..12).include?(@month)
         raise ArgumentError, "my_cal: #{month} is not a month number (1..12)."
       end
-      if @year < 1800 || @year > 3000
+      unless (1800..3000).include?(@year)
         raise ArgumentError, "my_cal: Year must be between 1800 and 3000. Please try again."
       end
+    end
 
+    def create_month_header
+      "#{MonthNames[month.to_i-1]}"
     end
 
     def month_year_header
-      banner= "#{MonthNames[month.to_i-1]} #{year}".center(20).rstrip
+      banner = (create_month_header + " #{year}").center(20).rstrip
       banner
     end
 
@@ -56,27 +58,33 @@ class Calendar
   end
 
   def format_days_array
-    all_days=[]
+    all_days=(1..month_days).to_a
     first_day_spot.times do
-      all_days << "  "
-    end
-    month_days.times do
-      all_days<< MaxDays.shift.to_s
+      all_days.unshift( "  " )
     end
     (42-(first_day_spot + month_days)).times do
     all_days << " "
     end
     all_days = all_days.each_slice(7).to_a
-    all_days
+    all_days.each do |week_array|
+        week_array.collect! { |date| date.to_s.rjust(2) }
+        week_array.join(" ")
+    end
   end
 
-  def format_calendar
+  def print_month_calendar
     puts month_year_header
     puts "Su Mo Tu We Th Fr Sa"
-    format_days_array.each do |week_array|
-        week_array.collect! { |date| date.to_s.rjust(2) }
-        puts week_array.join(" ")
+    a=0
+    6.times do
+    puts format_days_array[a].join(" ")
+    a+=1
     end
   end
 
 end
+
+
+
+
+

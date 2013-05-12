@@ -1,7 +1,12 @@
-require 'my_calRF.rb'
+require 'CalYear.rb'
 
-month = ARGV[0]
-year = ARGV[1]
-
-cal = Calendar.new(month, year)
-cal.format_calendar
+if ARGV[1].nil?
+  year = ARGV[0].to_i
+  cal = Year.new(year)
+  cal.print_year_calendar
+else
+  month = ARGV[0].to_i
+  year = ARGV[1].to_i
+  cal = Calendar.new(month, year)
+  cal.print_month_calendar
+end
