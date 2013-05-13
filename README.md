@@ -5,6 +5,9 @@ Implementation of the Linux "cal" program in Ruby. Assignment for Nashville Soft
 This is an exercise in test-driven development (TDD). When completed, this program will
 contain integration tests and unit tests that confirm the functionality of the methods.
 
+May 13 update:
+Full functionality of year and month calendars.
+
 May 8 update: Post refactoring
 My odd, large, funky code is no more. What a difference a peer code review and help from Nashville 
 Software school mentor Ben Bridges makes! Much smaller code overall, and it uses better practices
