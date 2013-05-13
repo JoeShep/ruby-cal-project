@@ -6,7 +6,7 @@ class Year
     @year = year
   end
 
-  def year_header
+  def create_year_header
     banner="#{@year}".center(62).rstrip + "\n\n"
   end
 
@@ -36,7 +36,7 @@ class Year
   end
 
   def print_year_calendar
-    puts year_header
+    puts create_year_header
     a, b, c = 0, 0, 0
     4.times do
     puts format_months_rows[c].join() + "\n"

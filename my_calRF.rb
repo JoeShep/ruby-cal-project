@@ -17,7 +17,8 @@ class Calendar
     end
 
     def create_month_header
-      "#{MonthNames[month.to_i-1]}"
+      header = "#{MonthNames[month.to_i-1]}"
+      header
     end
 
     def month_year_header
